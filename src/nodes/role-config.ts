@@ -1,18 +1,18 @@
 import { NodeProperties, Red } from 'node-red';
 
-import { IConnectConfig } from '../lib/interfaces';
+import { IRoleConfig } from '../lib/interfaces';
 
 export = (RED: Red) => {
   RED.nodes.registerType(
-    'discord-token',
-    function(this: IConnectConfig, props: NodeProperties): void {
+    'discord-role',
+    function(this: IRoleConfig, props: NodeProperties): void {
       RED.nodes.createNode(this, props);
-      this.token = this.credentials.token;
+      this.roleId = this.credentials.roleId;
       this.name = props.name;
     },
     {
       credentials: {
-        token: { type: 'password' },
+        roleId: { type: 'text' },
       },
     },
   );
