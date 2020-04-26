@@ -1,5 +1,6 @@
 # node-red-node-discord
 Inspired by [node-red-contrib-discord](https://github.com/jorisvddonk/node-red-contrib-discord)
+Forked from [node-red-node-discord](https://github.com/madmax3365/node-red-node-discord)
 
 Node-red nodes that allow you to interact with Discord, via [Discord.js](https://discord.js.org).
 Can be used to implement simple write/read Bots
@@ -8,7 +9,7 @@ Can be used to implement simple write/read Bots
 
 Run the following command in `~/.node-red`:
 
-    npm install node-red-node-discord
+    npm install @metafam/node-red-node-discord
 
 # Nodes
 
