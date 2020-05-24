@@ -68,11 +68,6 @@ export interface IMessageWithUserId {
   topic: string;
 }
 
-export interface IDeleteWrongMessage {
-  payload: string;
-  topic: string;
-}
-
 export interface ISendMessageProps extends NodeProperties {
   token: string;
   channel: string;
@@ -97,6 +92,14 @@ export interface IFromDiscordMsg {
   member: GuildMember;
   memberRoleNames: string[] | null;
   attachments?: IFile[];
+  rawData?: Message;
+}
+
+export interface IMessageWithValidMessages {
+  payload: string;
+  validMessages: string[];
+  member: GuildMember;
+  memberRoleNames: string[] | null;
   rawData?: Message;
 }
 
