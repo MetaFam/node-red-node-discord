@@ -2,7 +2,7 @@ import { Node, Red } from 'node-red';
 import {
   IDeleteMessageResponse,
   IDeleteWrongMessageConfig,
-  IFromDiscordMsg,
+  IMessageWithValidMessages,
 } from '../lib/interfaces';
 
 export = (RED: Red) => {
@@ -12,9 +12,8 @@ export = (RED: Red) => {
   ) {
     RED.nodes.createNode(this, props);
     const node = this;
-    const messageToMatch = props.message;
     // @ts-ignore
-    this.on('input', (msg: IFromDiscordMsg, send, done) => {
+    this.on('input', (msg: IMessageWithValidMessages, send, done) => {
       node.status({ fill: 'green', shape: 'dot', text: 'ready' });
       const msgid = RED.util.generateId();
 
@@ -26,10 +25,20 @@ export = (RED: Red) => {
       };
 
       const messageReceived: string = msg.payload;
-      if (messageReceived.startsWith(messageToMatch)) {
+      const validMessageArray: string[] = msg.validMessages;
+      let hasReceivedValidMessage = false;
+
+      validMessageArray.forEach((validMessage) => {
+        if (messageReceived.startsWith(validMessage)) {
+          hasReceivedValidMessage = true;
+        }
+      });
+      if (hasReceivedValidMessage) {
         message.payload = 'Valid message';
       } else {
-        msg.rawData?.delete();
+        if (msg.rawData != null) {
+          msg.rawData.delete();
+        }
         message.payload = 'Invalid message';
       }
       node.send(message);
