@@ -41,7 +41,10 @@
     "nodes": {
       "role-config": "dist/nodes/role-config.js",
       "connect": "dist/nodes/connect.js",
+      "github-token": "dist/nodes/github-token.js",
       "discord-get-messages": "dist/nodes/get-messages.js",
+      "discord-create-issue": "dist/nodes/create-issue.js",
+      "discord-create-pull-request": "dist/nodes/create-pull-request.js",
       "discord-get-emoji-reactions": "dist/nodes/get-emoji-reactions.js",
       "discord-get-member-role": "dist/nodes/get-member-role.js",
       "discord-send-messages": "dist/nodes/send-messages.js",
@@ -53,11 +56,13 @@
     }
   },
   "dependencies": {
+    "@octokit/rest": "^18.5.3",
+    "axios": "^0.21.1",
     "discord.js": "^11.6.4",
     "flatted": "^2.0.0"
   },
   "devDependencies": {
-    "@types/node": "^12.12.14",
+    "@types/node": "^12.20.11",
     "@types/node-red": "^0.20.0",
     "husky": "^3.1.0",
     "lint-staged": "^9.4.3",

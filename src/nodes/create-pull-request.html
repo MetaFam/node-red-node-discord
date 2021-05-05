@@ -1,0 +1,36 @@
+<script type="text/javascript">
+	RED.nodes.registerType('discord-create-pull-request', {
+		category: 'discord',
+		color: '#7289da',
+		defaults: {
+			name: { value: '', required: false },
+			token: { value: '', required: true, type: 'github-token' },
+			channels: { value: '', required: false },
+		},
+		inputs: 0,
+		outputs: 1,
+		icon: 'discord.png',
+		label: function() {
+			return this.name || 'Create GitHub Pull Request';
+		},
+	});
+</script>
+<script type="text/x-red" data-template-name="discord-create-pull-request">
+	<div class="form-row">
+		<label for="node-input-token"><i class="icon-bookmark"></i>Setup Tokens</label>
+	    <input type="password" id="node-input-token">
+	</div>
+	<div class="form-row">
+	    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+	    <input type="text" id="node-input-name">
+	</div>
+	<div class="form-row">
+	    <label for="node-input-channels"><i class="icon-tag"></i>Channels to listen</label>
+	    <input type="text" id="node-input-channels" placeholder="#12341 #45452334 #1234">
+	</div>
+</script>
+<script type="text/x-red" data-help-name="discord-create-pull-request">
+	<p>Creates a pull request in https://github.com/MetaFam/metagame-wiki master branch and adds an image in static/img folder. This bot will listen for messages on the specified channels and if any message has an image as an attachment and a comment of the kind "create pr", then it will create a branch "imageBranch" if it is not already created for https://github.com/MetaFam/metagame-wiki repo and then it'll commit the atttached image to the imageBranch repo and then create a pull request to the master branch of MetaGame's documentation and will reply to the user's message telling him that it has succeeded.</p>
+	<p>You can pass list of channels to listen to</p>
+	<p><em>Note</em> valid channel list example <code>#1245#general#1234567#another-channel</code></p>
+</script>

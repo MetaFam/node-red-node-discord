@@ -11,6 +11,7 @@ import {
   TextChannel,
   User,
 } from 'discord.js';
+import { Octokit } from "@octokit/rest";
 import { Node, NodeProperties } from 'node-red';
 import { Stream } from 'stream';
 
@@ -19,6 +20,17 @@ export interface IConnectConfig extends Node {
     token: string;
   };
   token?: string;
+}
+
+export interface IGithubConnectConfig extends Node {
+  credentials: {
+    discordToken: string;
+    githubPersonalAccessToken: string;
+    githubUsername: string;
+  };
+  discordToken?: string;
+  githubPersonalAccessToken?: string;
+  githubUsername?: string;
 }
 
 export interface IRoleConfig extends Node {
@@ -75,6 +87,11 @@ export interface ISendMessageProps extends NodeProperties {
 
 export interface IBot extends Client {
   numReferences?: number;
+}
+
+export interface IOctokit {
+  numReferences?: number;
+  octokit: Octokit;
 }
 
 export interface ICallback {
