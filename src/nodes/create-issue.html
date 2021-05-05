@@ -1,0 +1,36 @@
+<script type="text/javascript">
+	RED.nodes.registerType('discord-create-issue', {
+		category: 'discord',
+		color: '#7289da',
+		defaults: {
+			name: { value: '', required: false },
+			token: { value: '', required: true, type: 'github-token' },
+			channels: { value: '', required: false },
+		},
+		inputs: 0,
+		outputs: 1,
+		icon: 'discord.png',
+		label: function() {
+			return this.name || 'Create GitHub issue';
+		},
+	});
+</script>
+<script type="text/x-red" data-template-name="discord-create-issue">
+	<div class="form-row">
+		<label for="node-input-token"><i class="icon-bookmark"></i>Setup Tokens</label>
+	    <input type="password" id="node-input-token">
+	</div>
+	<div class="form-row">
+	    <label for="node-input-name"><i class="icon-tag"></i> Name</label>
+	    <input type="text" id="node-input-name">
+	</div>
+	<div class="form-row">
+	    <label for="node-input-channels"><i class="icon-tag"></i>Channels to listen</label>
+	    <input type="text" id="node-input-channels" placeholder="#12341 #45452334 #1234">
+	</div>
+</script>
+<script type="text/x-red" data-help-name="discord-create-issue">
+	<p>Captures the messages on specified channels and looks if message is of the type "issuize to repo X | issue title | issue body", then it will check if the repo's name is correct according to GitHub's naming conventions, capture the title and body and then it'll publish that issue to that repo and will reply to the user's message in discord telling him that it has succeeded.</p>
+	<p>You can pass list of channels to listen to</p>
+	<p><em>Note</em> valid channel list example <code>#1245#general#1234567#another-channel</code></p>
+</script>
